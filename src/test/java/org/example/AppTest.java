@@ -1,38 +1,32 @@
 package org.example;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class AppTest {
+
+    @Test
+    public void increaseBalance() {
+        BankAccount ba = new BankAccount(0, 0, "name");
+        double actualBalance = ba.deposit(400);
+        assertEquals(400, actualBalance);
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    // tests if decrease balance
+    @Test
+    public void decreaseBalance() {
+        BankAccount ba = new BankAccount(500, 0, "name");
+        double actualBalance = ba.withdraw(400);
+        assertEquals(100, actualBalance);
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void increaseBalance() {
+        BankAccount ba = new BankAccount(0, 0, "name");
+        double actualBalance = ba.deposit(-500);
+
+        IllegalArgumentException exc = new IllegalArgumentException("Deposit balance cannot be negative");
+        assertEquals(exc, actualBalance);
     }
 }
