@@ -13,7 +13,7 @@ public class BankAccount {
 
     public double deposit(double amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("Deposit balance cannot be negative");
+            throw new IllegalArgumentException("Deposit cannot be negative");
         } else {
             balance += amount;
         }
@@ -21,7 +21,6 @@ public class BankAccount {
     }
 
     public double withdraw(double amount) {
-
         double availableAmount = Math.abs(minimumBalance) + balance;
         if (amount > availableAmount) {
             throw new IllegalArgumentException("You have insufficient funds.");
